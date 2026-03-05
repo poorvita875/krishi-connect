@@ -68,7 +68,7 @@ node index.js
 
 ## Architecture
 
-Browser (React) → Proxy (Node) → Google Gemini / Mock responses
+Browser (React) → Proxy (Node) → LLM Provider (Hugging Face / Gemini / Anthropic) or Mock responses
 
 **Why a proxy?**
 - Hides API keys (security)
