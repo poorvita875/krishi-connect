@@ -4,11 +4,11 @@ A multilingual AI-powered agricultural companion available 24/7 in your language
 
 ## Features
 
-- 🤖 **AI Chat Assistant** – Ask any farming-related questions in English, Kannada, Hindi, Tamil, Telugu, or Marathi
-- 🔍 **Pest & Disease Detection** – Upload crop photos for instant AI diagnosis and treatment recommendations
-- 🌤️ **Hyperlocal Weather Forecasting** – Real-time alerts for your district with farming-specific advisory
-- 💰 **Government Schemes Database** – Search and apply for agricultural subsidies (PM-KISAN, MSP, etc.)
-- 🌾 **Responsive Design** – Works seamlessly on mobile, tablet, and desktop
+-  **AI Chat Assistant** – Ask any farming-related questions in English, Kannada, Hindi, Tamil, Telugu, or Marathi
+-  **Pest & Disease Detection** – Upload crop photos for instant AI diagnosis and treatment recommendations
+-  **Hyperlocal Weather Forecasting** – Real-time alerts for your district with farming-specific advisory
+-  **Government Schemes Database** – Search and apply for agricultural subsidies (PM-KISAN, MSP, etc.)
+-  **Responsive Design** – Works seamlessly on mobile, tablet, and desktop
 
 ## Tech Stack
 
@@ -91,4 +91,4 @@ Push to GitHub → Connect Vercel → Set `VITE_GEMINI_API_KEY` env → Deploy
 
 ## License
 
-MIT – Made with ❤️ for Indian farmers.
+MIT – Made by a curious student 
