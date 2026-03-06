@@ -2,7 +2,7 @@
 
 > *"When Farmers Talk, Technology Listens"*
 
-A multilingual AI-powered agricultural companion built for Indian farmers. Available 24/7 in 6 Indian languages — ask questions, detect crop diseases, check hyperlocal weather, and discover government schemes.
+A multilingual AI-powered agricultural companion built for Indian farmers. Available 24/7 in 6 Indian languages - ask questions, detect crop diseases, check hyperlocal weather, and discover government schemes.
 
  
 
@@ -23,10 +23,10 @@ A multilingual AI-powered agricultural companion built for Indian farmers. Avail
 ##  Tech Stack
 
 ### Frontend
-- **React 18** — UI components with hooks (`useState`, `useRef`, `useEffect`)
-- **Vite** — Lightning-fast build tool and dev server
-- **Pure CSS** — Custom styling with CSS variables, Flexbox, Grid, 4 responsive breakpoints
-- **Google Fonts** — Playfair Display + Noto Sans family (supports all Indian scripts)
+- **React 18** - UI components with hooks (`useState`, `useRef`, `useEffect`)
+- **Vite** - Lightning-fast build tool and dev server
+- **Pure CSS** - Custom styling with CSS variables, Flexbox, Grid, 4 responsive breakpoints
+- **Google Fonts** - Playfair Display + Noto Sans family (supports all Indian scripts)
 
 ### AI / LLM
 - **Groq API** — Powers all AI chat and pest analysis
@@ -36,14 +36,14 @@ A multilingual AI-powered agricultural companion built for Indian farmers. Avail
   - OpenAI-compatible API format
 
 ### External APIs
-- **Open-Meteo** — Free weather API, no key required
+- **Open-Meteo** - Free weather API, no key required
   - Real-time temperature, humidity, wind, precipitation
   - 7-day forecast with WMO weather codes
   - Fallback to seasonal estimates if API is blocked
 
 ### Security
 - **Vite Environment Variables** — `import.meta.env.VITE_GROQ_KEY` keeps API keys out of code
-- **`.gitignore`** — `.env` files never pushed to GitHub
+- **`.gitignore`** - `.env` files never pushed to GitHub
 - **Vercel Environment Variables** — Key stored securely server-side for production
 
 ---
@@ -156,4 +156,4 @@ Your app will be live at `https://krishi-connect.vercel.app`
 
 ##  License
 
-MIT — Made by a student who believes technology should serve farmers first.
+MIT - Made by a student who believes technology should serve farmers first.
