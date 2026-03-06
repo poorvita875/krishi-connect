@@ -3,6 +3,7 @@
 > *"When Farmers Talk, Technology Listens"*
 
 A multilingual AI-powered agricultural companion built for Indian farmers. Available 24/7 in 6 Indian languages - ask questions, detect crop diseases, check hyperlocal weather, and discover government schemes.
+Live Demo :https://krishi-connect-puce.vercel.app
 
  
 
