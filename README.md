@@ -1,94 +1,159 @@
-# KrishiConnect AI – Smart Farming Assistant
+# 🌾 KrishiConnect AI — Smart Farming Assistant
 
-A multilingual AI-powered agricultural companion available 24/7 in your language. Designed for Indian farmers with features for crop disease detection, government scheme lookup, weather forecasting, and AI chat assistance.
+> *"When Farmers Talk, Technology Listens"*
 
-## Features
+A multilingual AI-powered agricultural companion built for Indian farmers. Available 24/7 in 6 Indian languages — ask questions, detect crop diseases, check hyperlocal weather, and discover government schemes.
 
--  **AI Chat Assistant** – Ask any farming-related questions in English, Kannada, Hindi, Tamil, Telugu, or Marathi
--  **Pest & Disease Detection** – Upload crop photos for instant AI diagnosis and treatment recommendations
--  **Hyperlocal Weather Forecasting** – Real-time alerts for your district with farming-specific advisory
--  **Government Schemes Database** – Search and apply for agricultural subsidies (PM-KISAN, MSP, etc.)
--  **Responsive Design** – Works seamlessly on mobile, tablet, and desktop
+ 
 
-## Tech Stack
+---
 
-- **Frontend**: React 18 + Vite
-- **Backend Proxy**: Node.js + Express
-- **LLM Provider**: Google Generative AI (Gemini) or Hugging Face (free tier)
-- **Languages**: 6 Indian languages + English
+##  Features
 
-## Quick Start
+| Feature | Description |
+|--------|-------------|
+|  **AI Chat** | Ask farming questions in English, Kannada, Hindi, Tamil, Telugu, or Marathi |
+|  **Pest Detection** | Upload a crop photo for instant AI disease diagnosis + treatment |
+|  **Weather** | Hyperlocal 7-day forecast for 6 Karnataka districts with farming advisories |
+|  **Govt Schemes** | Browse & apply for PM-KISAN, PMFBY, KCC, Raitha Siri, and more |
+|  **Responsive** | Fully optimized for mobile, tablet, and desktop |
+
+---
+
+##  Tech Stack
+
+### Frontend
+- **React 18** — UI components with hooks (`useState`, `useRef`, `useEffect`)
+- **Vite** — Lightning-fast build tool and dev server
+- **Pure CSS** — Custom styling with CSS variables, Flexbox, Grid, 4 responsive breakpoints
+- **Google Fonts** — Playfair Display + Noto Sans family (supports all Indian scripts)
+
+### AI / LLM
+- **Groq API** — Powers all AI chat and pest analysis
+  - Model: `llama-3.1-8b-instant` (Meta's Llama 3.1, hosted on Groq)
+  - Sub-second response times (Groq's custom LPU hardware)
+  - Free tier available at [console.groq.com](https://console.groq.com)
+  - OpenAI-compatible API format
+
+### External APIs
+- **Open-Meteo** — Free weather API, no key required
+  - Real-time temperature, humidity, wind, precipitation
+  - 7-day forecast with WMO weather codes
+  - Fallback to seasonal estimates if API is blocked
+
+### Security
+- **Vite Environment Variables** — `import.meta.env.VITE_GROQ_KEY` keeps API keys out of code
+- **`.gitignore`** — `.env` files never pushed to GitHub
+- **Vercel Environment Variables** — Key stored securely server-side for production
+
+---
+
+
+
+**In KrishiConnect, Groq is used for two things:**
+
+### 1. AI Chat (multilingual farming assistant)
+```
+User types question → App sends to Groq API with system prompt →
+Groq runs Llama 3.1 → Returns answer in farmer's chosen language
+```
+The system prompt tells the model to respond in the selected language and behave like a friendly farming expert. The last 10 messages are sent as conversation history so the AI remembers context.
+
+### 2. Pest & Disease Analysis
+```
+User uploads crop photo → App describes image to Groq →
+Groq analyzes based on common crop diseases →
+Returns: disease name, severity, treatment, prevention
+```
+
+**API call structure (OpenAI-compatible):**
+```js
+fetch("https://api.groq.com/openai/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Authorization": "Bearer " + GROQ_KEY,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    model: "llama-3.1-8b-instant",
+    messages: [
+      { role: "system", content: "You are a farming expert..." },
+      { role: "user", content: "What fertilizer for rice?" }
+    ],
+    max_tokens: 1024
+  })
+})
+```
+
+---
+
+##  Quick Start (Local Development)
 
 ```bash
-# Install frontend
+# Clone the repo
+git clone https://github.com/poorvita875/krishi-connect.git
+cd krishi-connect
+
+# Install dependencies
 npm install
 
-# Install and run server proxy
-# the back end listens on port 5176 by default (5174 and 5175 were noisy on Windows)
-cd server && npm install
-# set PORT if you prefer another value
-node index.js
+# Create environment file
+echo "VITE_GROQ_KEY=your_groq_key_here" > .env
 
-# In another terminal, run frontend
+# Start development server
 npm run dev
 ```
 
-Open http://localhost:5173 (front end) and note that the proxy will
-run at http://localhost:5176 by default.
+Open **http://localhost:5173**
 
-### Demo Mode
 
-The app works without an API key – returns mock farming tips for demos.
+---
 
-### Using a real LLM API key (Gemini, Anthropic or Hugging Face)
-
-You can use any of the following keys; the proxy will pick the first one it finds:
-
-```ini
-# Hugging Face (free tier)
-HF_API_KEY=your_hf_key
-HF_MODEL=gpt2          # optional, default is gpt2
-
-# or Google Gemini
-VITE_GEMINI_API_KEY=your_key_here
-
-# or Anthropic Claude
-ANTHROPIC_API_KEY=sk-...
-```
-
-Hugging Face provides a generous free quota and is easiest for students; you can sign up for a token at https://huggingface.co/settings/tokens.  
-> **Note:** HF recently migrated to a new router endpoint. The proxy automatically uses `https://router.huggingface.co/...` under the hood, so you don’t need to change anything – just ensure your key is valid and restart the server.
-
-After editing `.env`, restart the proxy with:
-
-```bash
-cd server
-node index.js
-```
-
-## Architecture
-
-Browser (React) → Proxy (Node) → LLM Provider (Hugging Face / Gemini / Anthropic) or Mock responses
-
-**Why a proxy?**
-- Hides API keys (security)
-- Avoids CORS blocks
-- Easy provider swapping
-
-## File Structure
+## 📁 Project Structure
 
 ```
 krishi-connect/
-├── src/KrishiConnect.jsx    # Main app
-├── server/index.js           # Express proxy gateway
-├── README.md                 # This file
-└── package.json
+├── src/
+│   └── KrishiConnect.jsx    # Entire app (single-file React)
+├── public/
+│   └── vite.svg
+├── .env                     # Local secrets (never committed)
+├── .gitignore               # Excludes .env from git
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
 ```
 
-## Deployment
+---
 
-Push to GitHub → Connect Vercel → Set `VITE_GEMINI_API_KEY` env → Deploy
+##  Deployment on Vercel
 
-## License
+1. Push code to GitHub (see above)
+2. Go to [vercel.com](https://vercel.com) → **Sign up with GitHub**
+3. Click **Add New Project** → Select `krishi-connect`
+4. Before deploying, add **Environment Variable:**
+   - Key: `VITE_GROQ_KEY`
+   - Value: *(your real Groq API key)*
+5. Click **Deploy** 
 
-MIT – Made by a curious student 
+Your app will be live at `https://krishi-connect.vercel.app`
+
+---
+
+## Supported Languages
+
+| Language | Script |
+|----------|--------|
+| English | Latin |
+| ಕನ್ನಡ (Kannada) | Kannada |
+| हिंदी (Hindi) | Devanagari |
+| தமிழ் (Tamil) | Tamil |
+| తెలుగు (Telugu) | Telugu |
+| मराठी (Marathi) | Devanagari |
+
+---
+
+##  License
+
+MIT — Made by a student who believes technology should serve farmers first.
