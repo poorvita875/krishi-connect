@@ -1,4 +1,4 @@
-# 🌾 KrishiConnect AI — Smart Farming Assistant
+# 🌾 KrishiConnect AI - Smart Farming Assistant
 
 > *"When Farmers Talk, Technology Listens"*
 
